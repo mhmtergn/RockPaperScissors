@@ -36,6 +36,8 @@ class ViewController: UIViewController {
         
         
         self.resetTime()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(alert(title:message:)))
 
   
     }
@@ -170,10 +172,24 @@ class ViewController: UIViewController {
       
     }
     
-    func alert(title: String, message: String) {
+   @objc func alert(title: String, message: String) {
+       
+       guard let yourChoice = yourChoice.text else {
+           print("no Share")
+           return
+       }
+       
         let alertAction = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let shareButton = UIAlertAction(title: "Share", style: .default) { UIAlertAction in
+            let vc = UIActivityViewController(activityItems: [yourChoice], applicationActivities: [])
+            
+            vc.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+            
+            self.present(vc, animated: true, completion: nil)
+        }
         alertAction.addAction(okButton)
+        alertAction.addAction(shareButton)
         
         self.present(alertAction, animated: true, completion: nil)
     }
