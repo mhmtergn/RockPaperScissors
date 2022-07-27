@@ -63,6 +63,12 @@ class ViewController: UIViewController {
         yourScore.text = String(yScore)
         computerScore.text = String(cScore)
         
+        if yScore == 10 {
+            alert(title: "Hurreeey", message: "You Won")
+        }else if cScore == 10 {
+            alert(title: "Ooooh!", message: "Computer Won!")
+        }
+        
     }
 
     
@@ -88,6 +94,12 @@ class ViewController: UIViewController {
         
         yourScore.text = String(yScore)
         computerScore.text = String(cScore)
+        
+        if yScore == 10 {
+            alert(title: "Hurreeey", message: "You Won")
+        }else if cScore == 10 {
+            alert(title: "Ooooh!", message: "Computer Won!")
+        }
     }
     
     @IBAction func scissorsTapped(_ sender: UIButton) {
@@ -114,6 +126,12 @@ class ViewController: UIViewController {
         
         yourScore.text = String(yScore)
         computerScore.text = String(cScore)
+        
+        if yScore == 10 {
+            alert(title: "Hurreeey", message: "You Won")
+        }else if cScore == 10 {
+            alert(title: "Ooooh!", message: "Computer Won!")
+        }
     }
 
     
@@ -148,6 +166,16 @@ class ViewController: UIViewController {
         }else if you == .scissors && computer == .rock {
             yScore += 1
         }
+        
+      
+    }
+    
+    func alert(title: String, message: String) {
+        let alertAction = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertAction.addAction(okButton)
+        
+        self.present(alertAction, animated: true, completion: nil)
     }
     
     
